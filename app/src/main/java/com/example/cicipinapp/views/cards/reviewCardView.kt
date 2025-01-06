@@ -1,7 +1,6 @@
 package com.example.cicipinapp.views.cards
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,21 +31,27 @@ import com.example.cicipinapp.R
 fun ReviewCard() {
     Card(
         shape = RoundedCornerShape(8.dp),
+<<<<<<< Updated upstream
         modifier = Modifier
             .fillMaxWidth().
             background(Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+=======
+        modifier = Modifier.fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White) // White background for the card
+>>>>>>> Stashed changes
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.background(Color.White)
+            modifier = Modifier.fillMaxWidth()
         ) {
             Image(
                 painter = painterResource(R.drawable.restoimage),
-                "Card Image",
+                contentDescription = "Card Image",
                 modifier = Modifier
-                    .size(170.dp) // Define a fixed size for the image
-                    .aspectRatio(1f), // Ensure a 1:1 aspect ratio
+                    .size(170.dp) // Fixed size for the image
+                    .aspectRatio(1f), // Ensure 1:1 aspect ratio
                 contentScale = ContentScale.Crop // Fill and crop the image to fit the size
             )
 
@@ -65,7 +71,7 @@ fun ReviewCard() {
                     )
                     Icon(
                         painter = painterResource(R.drawable.baseline_arrow_forward_ios_24),
-                        "Forward Icon"
+                        contentDescription = "Forward Icon"
                     )
                 }
 
@@ -74,7 +80,7 @@ fun ReviewCard() {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Image(
                         painter = painterResource(R.drawable.baseline_star_24),
-                        "startReview",
+                        contentDescription = "Rating Icon",
                         modifier = Modifier.size(24.dp)
                     )
                     Spacer(Modifier.width(6.dp))
@@ -87,7 +93,9 @@ fun ReviewCard() {
                 Spacer(Modifier.height(4.dp))
 
                 Text(
-                    text = "the food is good and delecious, but unfortunately the place isn’t that neat and comfy...... readmore"
+                    text = "The food is good and delicious, but unfortunately the place isn’t that neat and comfy... Read more.",
+                    maxLines = 3, // Prevents overflowing text
+                    overflow = TextOverflow.Ellipsis // Adds ellipsis when text is truncated
                 )
             }
         }
@@ -96,6 +104,6 @@ fun ReviewCard() {
 
 @Preview(showBackground = true)
 @Composable
-private fun reviewCardPreview() {
+private fun ReviewCardPreview() {
     ReviewCard()
 }
